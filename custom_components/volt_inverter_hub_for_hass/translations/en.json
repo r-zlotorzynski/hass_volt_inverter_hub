@@ -1,0 +1,129 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Volt Inverter Hub",
+        "description": "Set up the Modbus connection and choose your inverter model.",
+        "data": {
+          "port": "Serial port",
+          "baudrate": "Baud rate",
+          "slave": "Modbus address",
+          "interval": "Refresh interval (s)",
+          "model": "Inverter model"
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "The integration is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "data": {
+          "interval": "Refresh interval (s)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "volt_general_work_state":      { "name": "General work state" },
+      "volt_battery_voltage":         { "name": "Battery voltage" },
+      "volt_battery_power":           { "name": "Battery power" },
+      "volt_battery_current":         { "name": "Battery current" },
+      "volt_inverter_voltage":        { "name": "Inverter voltage" },
+      "volt_grid_voltage":            { "name": "Grid voltage" },
+      "volt_bus_voltage":             { "name": "BUS voltage" },
+      "volt_control_current":         { "name": "Control current" },
+      "volt_inverter_current":        { "name": "Inverter current" },
+      "volt_grid_current":            { "name": "Grid current" },
+      "volt_load_current":            { "name": "Load current" },
+      "volt_power_inverter":          { "name": "Inverter power" },
+      "volt_power_grid":              { "name": "Grid power" },
+      "volt_power_load":              { "name": "Load power" },
+      "volt_load_percent":            { "name": "Load percent" },
+      "volt_s_inverter":              { "name": "S-Inverter (VA)" },
+      "volt_s_grid":                  { "name": "S-Grid (VA)" },
+      "volt_s_load":                  { "name": "S-Load (VA)" },
+      "volt_q_inverter":              { "name": "Q-Inverter (var)" },
+      "volt_q_grid":                  { "name": "Q-Grid (var)" },
+      "volt_q_load":                  { "name": "Q-Load (var)" },
+      "volt_frequency_inverter":      { "name": "Inverter frequency" },
+      "volt_frequency_grid":          { "name": "Grid frequency" },
+      "volt_dc_radiator_temperature": { "name": "Radiator temperature" },
+
+      "volt_inverter_relay_state":    { "name": "Inverter relay state" },
+      "volt_grid_relay_state":        { "name": "Grid relay state" },
+      "volt_load_relay_state":        { "name": "Load relay state" },
+      "volt_n_line_relay_state":      { "name": "N-Line relay state" },
+      "volt_dc_relay_state":          { "name": "DC relay state" },
+      "volt_earth_relay_state":       { "name": "Earth relay state" },
+
+      "volt_accumulated_charger_power_h":   { "name": "Charged energy (kWh-H)" },
+      "volt_accumulated_charger_power":     { "name": "Charged energy (Wh)" },
+      "volt_accumulated_discharger_power_h":{ "name": "Discharged energy (kWh-H)" },
+      "volt_accumulated_discharger_power":  { "name": "Discharged energy (Wh)" },
+      "volt_accumulated_buy_power_h":       { "name": "Buy energy (kWh-H)" },
+      "volt_accumulated_buy_power":         { "name": "Buy energy (Wh)" },
+      "volt_accumulated_sell_power_h":      { "name": "Sell energy (kWh-H)" },
+      "volt_accumulated_sell_power":        { "name": "Sell energy (Wh)" },
+      "volt_accumulated_load_power_h":      { "name": "Load energy (kWh-H)" },
+      "volt_accumulated_load_power":        { "name": "Load energy (Wh)" },
+      "volt_accumulated_self_use_power_h":  { "name": "Self-use energy (kWh-H)" },
+      "volt_accumulated_self_use_power":    { "name": "Self-use energy (Wh)" },
+      "volt_accumulated_pv_sell_power_h":   { "name": "PV-sell energy (kWh-H)" },
+      "volt_accumulated_pv_sell_power":     { "name": "PV-sell energy (Wh)" },
+      "volt_battery_energy_accumulated_from_grid_h": { "name": "Batt-from-grid (kWh-H)" },
+      "volt_battery_energy_accumulated_from_grid":    { "name": "Batt-from-grid (Wh)" },
+
+      "volt_mppt_charger_work_state":       { "name": "MPPT charger state" },
+      "volt_mppt_work_state":               { "name": "MPPT state" },
+      "volt_mppt_charging_work_state":      { "name": "MPPT charging mode" },
+      "volt_mppt_charger_voltage":          { "name": "MPPT PV voltage" },
+      "volt_mppt_charger_battery_voltage":  { "name": "MPPT battery voltage" },
+      "volt_mppt_charger_current":          { "name": "MPPT current" },
+      "volt_mppt_charger_power":            { "name": "MPPT power" },
+      "volt_mppt_radiator_temperature":     { "name": "MPPT radiator temp" },
+      "volt_mppt_battery_relay_state":      { "name": "MPPT battery relay" },
+      "volt_mppt_pv_relay_state":           { "name": "MPPT PV relay" },
+
+      "volt_mppt_accumulated_pv_energy_h":  { "name": "MPPT PV energy (kWh-H)" },
+      "volt_mppt_accumulated_pv_energy":    { "name": "MPPT PV energy (Wh)" },
+      "volt_mppt_accumulated_day":          { "name": "MPPT day counter" },
+      "volt_mppt_accumulated_hour":         { "name": "MPPT hour counter" },
+      "volt_mppt_accumulated_minute":       { "name": "MPPT minute counter" },
+
+      "volt_arrow_flag":                    { "name": "Arrow flag (bitmask)" }
+    },
+
+    "number": {
+      "volt_inverter_output_voltage_set":   { "name": "Output voltage set" },
+      "volt_inverter_output_frequency_set": { "name": "Output frequency set" },
+      "volt_inverter_max_discharger_current": { "name": "Max discharger current" },
+      "volt_battery_stop_discharging_voltage": { "name": "Stop-discharge voltage" },
+      "volt_battery_stop_charging_voltage": { "name": "Stop-charge voltage" },
+      "volt_grid_max_charger_current_set":  { "name": "Grid max charge current" },
+      "volt_battery_low_voltage":           { "name": "Battery low voltage" },
+      "volt_battery_high_voltage":          { "name": "Battery high voltage" },
+      "volt_max_combine_charger_current":   { "name": "Max combined charge current" },
+      "volt_mppt_float_voltage":            { "name": "MPPT float voltage" },
+      "volt_mppt_absorption_voltage":       { "name": "MPPT absorption voltage" },
+      "volt_mppt_battery_low_voltage":      { "name": "MPPT batt low voltage" },
+      "volt_mppt_battery_high_voltage":     { "name": "MPPT batt high voltage" },
+      "volt_mppt_pv_max_charger_current":   { "name": "MPPT max PV current" }
+    },
+
+    "switch": {
+      "volt_inverter_search_mode_switch":   { "name": "Search mode ON/OFF" },
+      "volt_offgrid_work_enable":           { "name": "Off-grid mode" }
+    },
+
+    "select": {
+      "volt_energy_use_mode":               { "name": "Energy use mode" },
+      "volt_solar_use_aim":                 { "name": "Solar use aim" },
+      "volt_charger_source_priority":       { "name": "Charger source priority" }
+    }
+  }
+}

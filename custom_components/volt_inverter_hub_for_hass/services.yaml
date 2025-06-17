@@ -1,0 +1,17 @@
+write_register:
+  name: Zapisz rejestr Modbus
+  description: Uniwersalny zapis pojedynczego rejestru w inwerterze (awaryjnie, gdy encji brak).
+  fields:
+    address:
+      required: true
+      example: 0x9001
+      selector:
+        number:
+          min: 0
+          max: 65535
+    value:
+      required: true
+      selector:
+        number:
+          min: 0
+          max: 65535
