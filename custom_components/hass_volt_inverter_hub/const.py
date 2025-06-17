@@ -6,7 +6,7 @@ CONST – Volt Inverter Hub for HASS
 from __future__ import annotations
 
 DOMAIN           = "hass_volt_inverter_hub"
-DEFAULT_PORT     = "/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0"
+DEFAULT_PORT     = "/dev/ttyUSB0"
 DEFAULT_BAUDRATE = 19200
 UPDATE_INTERVAL  = 10          # encje bez własnego „interval” przyjmą 10 s
 
@@ -21,19 +21,20 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "volt_general_work_state",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
 
     # ---------- BATTERY & DC -------------------------------------------
     "volt_battery_voltage": {
         "addr": 25205,
         "scale": 0.1,
+        "precision": 2,
         "unit": "V",
         "device_class": "voltage",
         "display_name": "volt_battery_voltage",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_battery_power": {
         "addr": 25273,
@@ -41,8 +42,9 @@ registers = {
         "unit": "W",
         "device_class": "power",
         "display_name": "volt_battery_power",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding",
+        "interval": 5
     },
     "volt_battery_current": {
         "addr": 25274,
@@ -50,8 +52,8 @@ registers = {
         "unit": "A",
         "device_class": "current",
         "display_name": "volt_battery_current",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
 
     # ---------- INVERTER / GRID / BUS / LOAD ---------------------------
@@ -61,8 +63,8 @@ registers = {
         "unit": "V",
         "device_class": "voltage",
         "display_name": "VOLT Inverter Voltage",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_grid_voltage": {
         "addr": 25207,
@@ -70,17 +72,18 @@ registers = {
         "unit": "V",
         "device_class": "voltage",
         "display_name": "VOLT Grid Voltage",
-        "interval": 10,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_bus_voltage": {
         "addr": 25208,
         "scale": 0.1,
+        "precision": 1,
         "unit": "V",
         "device_class": "voltage",
         "display_name": "VOLT BUS Voltage",
-        "interval": 15,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_control_current": {
         "addr": 25209,
@@ -88,8 +91,8 @@ registers = {
         "unit": "A",
         "device_class": "current",
         "display_name": "VOLT Control Current",
-        "interval": 15,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_inverter_current": {
         "addr": 25210,
@@ -97,8 +100,8 @@ registers = {
         "unit": "A",
         "device_class": "current",
         "display_name": "VOLT Inverter Current",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_grid_current": {
         "addr": 25211,
@@ -106,8 +109,8 @@ registers = {
         "unit": "A",
         "device_class": "current",
         "display_name": "VOLT Grid Current",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_load_current": {
         "addr": 25212,
@@ -115,8 +118,8 @@ registers = {
         "unit": "A",
         "device_class": "current",
         "display_name": "VOLT Load Current",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_power_inverter": {
         "addr": 25213,
@@ -124,8 +127,8 @@ registers = {
         "unit": "W",
         "device_class": "power",
         "display_name": "VOLT Power Inverter",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_power_grid": {
         "addr": 25214,
@@ -133,8 +136,8 @@ registers = {
         "unit": "W",
         "device_class": "power",
         "display_name": "VOLT Power Grid",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_power_load": {
         "addr": 25215,
@@ -142,8 +145,8 @@ registers = {
         "unit": "W",
         "device_class": "power",
         "display_name": "VOLT Power Load",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_load_percent": {
         "addr": 25216,
@@ -151,8 +154,8 @@ registers = {
         "unit": "%",
         "device_class": "power_factor",
         "display_name": "VOLT Load Percent",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
 
     # ---------- APPARENT / REACTIVE POWER ------------------------------
@@ -162,8 +165,8 @@ registers = {
         "unit": "VA",
         "device_class": "apparent_power",
         "display_name": "VOLT S Inverter",
-        "interval": 15,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_s_grid": {
         "addr": 25218,
@@ -171,8 +174,8 @@ registers = {
         "unit": "VA",
         "device_class": "apparent_power",
         "display_name": "VOLT S Grid",
-        "interval": 15,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_s_load": {
         "addr": 25219,
@@ -180,8 +183,8 @@ registers = {
         "unit": "VA",
         "device_class": "apparent_power",
         "display_name": "VOLT S Load",
-        "interval": 15,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_q_inverter": {
         "addr": 25221,
@@ -189,8 +192,8 @@ registers = {
         "unit": "var",
         "device_class": "reactive_power",
         "display_name": "VOLT Q Inverter",
-        "interval": 15,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_q_grid": {
         "addr": 25222,
@@ -198,8 +201,8 @@ registers = {
         "unit": "var",
         "device_class": "reactive_power",
         "display_name": "VOLT Q Grid",
-        "interval": 15,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_q_load": {
         "addr": 25223,
@@ -207,8 +210,8 @@ registers = {
         "unit": "var",
         "device_class": "reactive_power",
         "display_name": "VOLT Q Load",
-        "interval": 15,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
 
     # ---------- FREQUENCY ----------------------------------------------
@@ -218,8 +221,8 @@ registers = {
         "unit": "Hz",
         "device_class": "frequency",
         "display_name": "VOLT Frequency Inverter",
-        "interval": 15,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_frequency_grid": {
         "addr": 25226,
@@ -227,8 +230,8 @@ registers = {
         "unit": "Hz",
         "device_class": "frequency",
         "display_name": "VOLT Frequency Grid",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
 
     # ---------- TEMPERATURE --------------------------------------------
@@ -238,8 +241,8 @@ registers = {
         "unit": "°C",
         "device_class": "temperature",
         "display_name": "VOLT DC Radiator Temperature",
-        "interval": 10,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     # ---------- RELAY STATES -------------------------------------------
     "volt_inverter_relay_state": {
@@ -248,8 +251,8 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "VOLT Inverter Relay State",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_grid_relay_state": {
         "addr": 25238,
@@ -257,8 +260,8 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "VOLT Grid Relay State",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_load_relay_state": {
         "addr": 25239,
@@ -266,8 +269,8 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "VOLT Load Relay State",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_n_line_relay_state": {
         "addr": 25240,
@@ -275,8 +278,8 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "VOLT N Line Relay State",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_dc_relay_state": {
         "addr": 25241,
@@ -284,8 +287,8 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "VOLT DC Relay State",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_earth_relay_state": {
         "addr": 25242,
@@ -293,156 +296,163 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "VOLT Earth Relay State",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
 
     # ---------- ENERGY – CHARGER / DISCHARGER / BUY / SELL -------------
-    "volt_accumulated_charger_power_h": {
-        "addr": 25245,
-        "scale": 1000,
-        "unit": "kWh",
-        "device_class": "energy",
-        "display_name": "VOLT Accumulated charger power H",
-        "interval": 30,
-        "is_write_reg": False
+    # ——— CHARGER -------------------------------------------------------
+    "_volt_accumulated_charger_power_h": {
+        "addr": 25245, "scale": 1000, "input_type": "holding", "expose": False
+    },
+    "_volt_accumulated_charger_power_l": {
+        "addr": 25246, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_accumulated_charger_power": {
-        "addr": 25246,
-        "scale": 100,
-        "unit": "Wh",
-        "device_class": "energy",
-        "display_name": "VOLT Accumulated charger power",
-        "interval": 30,
-        "is_write_reg": False
+        "display_name": "Charger energy",
+        "unit": "kWh", "device_class": "energy",
+        "state_class": "total_increasing",
+        "precision": 3,
+        "composite": {
+            "sources": [
+                {"key": "_volt_accumulated_charger_power_h", "factor": 1},
+                {"key": "_volt_accumulated_charger_power_l", "factor": 0.001}
+            ]
+        }
     },
-    "volt_accumulated_discharger_power_h": {
-        "addr": 25247,
-        "scale": 1000,
-        "unit": "kWh",
-        "device_class": "energy",
-        "display_name": "VOLT Accumulated discharger power H",
-        "interval": 30,
-        "is_write_reg": False
+    # ——— DISCHARGER ----------------------------------------------------
+    "_volt_accumulated_discharger_power_h": {
+        "addr": 25247, "scale": 1000, "input_type": "holding", "expose": False
+    },
+    "_volt_accumulated_discharger_power_l": {
+        "addr": 25248, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_accumulated_discharger_power": {
-        "addr": 25248,
-        "scale": 100,
-        "unit": "Wh",
-        "device_class": "energy",
-        "display_name": "VOLT Accumulated discharger power",
-        "interval": 30,
-        "is_write_reg": False
+        "display_name": "Discharger energy",
+        "unit": "kWh", "device_class": "energy",
+        "state_class": "total_increasing",
+        "precision": 3,
+        "composite": {
+            "sources": [
+                {"key": "_volt_accumulated_discharger_power_h", "factor": 1},
+                {"key": "_volt_accumulated_discharger_power_l", "factor": 0.001}
+            ]
+        }
     },
-    "volt_accumulated_buy_power_h": {
-        "addr": 25249,
-        "scale": 1000,
-        "unit": "kWh",
-        "device_class": "energy",
-        "display_name": "VOLT Accumulated buy power H",
-        "interval": 30,
-        "is_write_reg": False
+    # ——— GRID BUY ------------------------------------------------------
+    "_volt_accumulated_buy_power_h": {
+        "addr": 25249, "scale": 1000, "input_type": "holding", "expose": False
+    },
+    "_volt_accumulated_buy_power_l": {
+        "addr": 25250, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_accumulated_buy_power": {
-        "addr": 25250,
-        "scale": 100,
-        "unit": "Wh",
-        "device_class": "energy",
-        "display_name": "VOLT Accumulated buy power",
-        "interval": 30,
-        "is_write_reg": False
+        "display_name": "Grid-buy energy",
+        "unit": "kWh", "device_class": "energy",
+        "state_class": "total_increasing",
+        "precision": 3,
+        "composite": {
+            "sources": [
+                {"key": "_volt_accumulated_buy_power_h", "factor": 1},
+                {"key": "_volt_accumulated_buy_power_l", "factor": 0.001}
+            ]
+        }
     },
-    "volt_accumulated_sell_power_h": {
-        "addr": 25251,
-        "scale": 1000,
-        "unit": "kWh",
-        "device_class": "energy",
-        "display_name": "VOLT Accumulated sell power H",
-        "interval": 30,
-        "is_write_reg": False
+    # ——— GRID SELL -----------------------------------------------------
+    "_volt_accumulated_sell_power_h": {
+        "addr": 25251, "scale": 1000, "input_type": "holding", "expose": False
+    },
+    "_volt_accumulated_sell_power_l": {
+        "addr": 25252, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_accumulated_sell_power": {
-        "addr": 25252,
-        "scale": 100,
-        "unit": "Wh",
-        "device_class": "energy",
-        "display_name": "VOLT Accumulated sell power",
-        "interval": 30,
-        "is_write_reg": False
+        "display_name": "Grid-sell energy",
+        "unit": "kWh", "device_class": "energy",
+        "state_class": "total_increasing",
+        "precision": 3,
+        "composite": {
+            "sources": [
+                {"key": "_volt_accumulated_sell_power_h", "factor": 1},
+                {"key": "_volt_accumulated_sell_power_l", "factor": 0.001}
+            ]
+        }
     },
-    "volt_accumulated_load_power_h": {
-        "addr": 25253,
-        "scale": 1000,
-        "unit": "kWh",
-        "device_class": "energy",
-        "display_name": "VOLT Accumulated load power H",
-        "interval": 30,
-        "is_write_reg": False
+    # ——— LOAD ----------------------------------------------------------
+    "_volt_accumulated_load_power_h": {
+        "addr": 25253, "scale": 1000, "input_type": "holding", "expose": False
+    },
+    "_volt_accumulated_load_power_l": {
+        "addr": 25254, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_accumulated_load_power": {
-        "addr": 25254,
-        "scale": 100,
-        "unit": "Wh",
-        "device_class": "energy",
-        "display_name": "VOLT Accumulated load power",
-        "interval": 30,
-        "is_write_reg": False
+        "display_name": "Load energy",
+        "unit": "kWh", "device_class": "energy",
+        "state_class": "total_increasing",
+        "precision": 3,
+        "composite": {
+            "sources": [
+                {"key": "_volt_accumulated_load_power_h", "factor": 1},
+                {"key": "_volt_accumulated_load_power_l", "factor": 0.001}
+            ]
+        }
     },
-    "volt_accumulated_self_use_power_h": {
-        "addr": 25255,
-        "scale": 1000,
-        "unit": "kWh",
-        "device_class": "energy",
-        "display_name": "VOLT Accumulated self_use power H",
-        "interval": 30,
-        "is_write_reg": False
+    # ——— SELF-USE ------------------------------------------------------
+    "_volt_accumulated_self_use_power_h": {
+        "addr": 25255, "scale": 1000, "input_type": "holding", "expose": False
+    },
+    "_volt_accumulated_self_use_power_l": {
+        "addr": 25256, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_accumulated_self_use_power": {
-        "addr": 25256,
-        "scale": 100,
-        "unit": "Wh",
-        "device_class": "energy",
-        "display_name": "VOLT Accumulated self_use power",
-        "interval": 30,
-        "is_write_reg": False
+        "display_name": "Self-use energy",
+        "unit": "kWh", "device_class": "energy",
+        "state_class": "total_increasing",
+        "precision": 3,
+        "composite": {
+            "sources": [
+                {"key": "_volt_accumulated_self_use_power_h", "factor": 1},
+                {"key": "_volt_accumulated_self_use_power_l", "factor": 0.001}
+            ]
+        }
     },
-    "volt_accumulated_pv_sell_power_h": {
-        "addr": 25257,
-        "scale": 1000,
-        "unit": "kWh",
-        "device_class": "energy",
-        "display_name": "VOLT Accumulated PV_sell power H",
-        "interval": 30,
-        "is_write_reg": False
+    # ——— PV SELL -------------------------------------------------------
+    "_volt_accumulated_pv_sell_power_h": {
+        "addr": 25257, "scale": 1000, "input_type": "holding", "expose": False
+    },
+    "_volt_accumulated_pv_sell_power_l": {
+        "addr": 25258, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_accumulated_pv_sell_power": {
-        "addr": 25258,
-        "scale": 100,
-        "unit": "Wh",
-        "device_class": "energy",
-        "display_name": "VOLT Accumulated PV_sell power",
-        "interval": 30,
-        "is_write_reg": False
+        "display_name": "PV-sell energy",
+        "unit": "kWh", "device_class": "energy",
+        "state_class": "total_increasing",
+        "precision": 3,
+        "composite": {
+            "sources": [
+                {"key": "_volt_accumulated_pv_sell_power_h", "factor": 1},
+                {"key": "_volt_accumulated_pv_sell_power_l", "factor": 0.001}
+            ]
+        }
     },
 
     # ---------- BATTERY ENERGY FROM GRID -------------------------------
-    "volt_battery_energy_accumulated_from_grid_h": {
-        "addr": 25259,
-        "scale": 1000,
-        "unit": "kWh",
-        "device_class": "energy",
-        "display_name": "volt_battery_energy_accumulated_from_grid_high",
-        "interval": 30,
-        "is_write_reg": False
+    "_volt_battery_energy_grid_h": {
+        "addr": 25259, "scale": 1000, "input_type": "holding", "expose": False
+    },
+    "_volt_battery_energy_grid_l": {
+        "addr": 25260, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_battery_energy_accumulated_from_grid": {
-        "addr": 25260,
-        "scale": 100,
-        "unit": "Wh",
-        "device_class": "energy",
-        "display_name": "volt_battery_energy_accumulated_from_grid",
-        "interval": 30,
-        "is_write_reg": False
+        "display_name": "Battery-grid energy",
+        "unit": "kWh", "device_class": "energy",
+        "state_class": "total_increasing",
+        "precision": 3,
+        "composite": {
+            "sources": [
+                {"key": "_volt_battery_energy_grid_h", "factor": 1},
+                {"key": "_volt_battery_energy_grid_l", "factor": 0.001}
+            ]
+        }
     },
 
     # ---------- BATTERY POWER / CURRENT (25273-25274) już w części 1 ----
@@ -454,8 +464,8 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "VOLT MPPT charger workstate",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_mppt_work_state": {
         "addr": 15202,
@@ -463,8 +473,8 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "VOLT MPPT workstate",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_mppt_charging_work_state": {
         "addr": 15203,
@@ -472,17 +482,18 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "VOLT MPPT charging workstate",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_mppt_charger_voltage": {
         "addr": 15205,
         "scale": 0.1,
+        "precision": 2,
         "unit": "V",
         "device_class": "voltage",
         "display_name": "volt_mppt_charger_voltage",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_mppt_charger_battery_voltage": {
         "addr": 15206,
@@ -490,8 +501,8 @@ registers = {
         "unit": "V",
         "device_class": "voltage",
         "display_name": "volt_mppt_charger_battery_voltage",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_mppt_charger_current": {
         "addr": 15207,
@@ -499,8 +510,8 @@ registers = {
         "unit": "A",
         "device_class": "current",
         "display_name": "volt_mppt_charger_current",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_mppt_charger_power": {
         "addr": 15208,
@@ -508,8 +519,8 @@ registers = {
         "unit": "W",
         "device_class": "power",
         "display_name": "volt_mppt_charger_power",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_mppt_radiator_temperature": {
         "addr": 15209,
@@ -517,8 +528,8 @@ registers = {
         "unit": "°C",
         "device_class": "temperature",
         "display_name": "volt_mppt_radiator_temperature",
-        "interval": 15,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
 
     # ---------- MPPT RELAY STATES --------------------------------------
@@ -528,8 +539,8 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "VOLT MPPT battery relay State",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_mppt_pv_relay_state": {
         "addr": 15212,
@@ -537,27 +548,35 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "VOLT MPPT PV relay State",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
+
     # ---------- MPPT – LICZNIKI ENERGII --------------------------------
-    "volt_mppt_accumulated_pv_energy_h": {
+    "_volt_mppt_accumulated_pv_energy_h": {
         "addr": 15217,
         "scale": 1000,
-        "unit": "kWh",
-        "device_class": "energy",
-        "display_name": "volt_mppt_accumulated_pv_energy_h",
-        "interval": 30,
-        "is_write_reg": False
+        "input_type": "holding",
+        "expose": False
     },
-    "volt_mppt_accumulated_pv_energy": {
+    "_volt_mppt_accumulated_pv_energy_l": {
         "addr": 15218,
         "scale": 100,
-        "unit": "Wh",
+        "input_type": "holding",
+        "expose": False
+    },
+    "volt_mppt_accumulated_pv_energy": {
+        "display_name": "PV energy",
+        "unit": "kWh",
         "device_class": "energy",
-        "display_name": "volt_mppt_accumulated_pv_energy",
-        "interval": 30,
-        "is_write_reg": False
+        "state_class": "total_increasing",
+        "precision": 3,
+        "composite": {
+            "sources": [
+                {"key": "_volt_mppt_accumulated_pv_energy_h", "factor": 1},
+                {"key": "_volt_mppt_accumulated_pv_energy_l",   "factor": 0.001}
+            ]
+        }
     },
     "volt_mppt_accumulated_day": {
         "addr": 15219,
@@ -565,8 +584,8 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "VOLT MPPT Accumulated day",
-        "interval": 30,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_mppt_accumulated_hour": {
         "addr": 15220,
@@ -574,8 +593,8 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "VOLT MPPT Accumulated hour",
-        "interval": 30,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
     "volt_mppt_accumulated_minute": {
         "addr": 15221,
@@ -583,8 +602,8 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "VOLT MPPT Accumulated minute",
-        "interval": 30,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
 
     # ---------- SYSTEM FLAGI / STRZAŁKI --------------------------------
@@ -594,8 +613,8 @@ registers = {
         "unit": None,
         "device_class": None,
         "display_name": "VOLT Arrow Flag",
-        "interval": 2,
-        "is_write_reg": False
+        "is_write_reg": False,
+        "input_type": "holding"
     },
 
     # ===================  HOLDING REGISTERS (201xx)  ===================
@@ -605,10 +624,10 @@ registers = {
         "scale": 1,
         "unit": None,
         "display_name": "Volt offgrid work enable",
-        "interval": 30,
         "is_write_reg": True,
         "type": "switch",
-        "write_values": {0: "OFF", 1: "ON"}
+        "write_values": {0: "OFF", 1: "ON"},
+        "input_type": "holding"
     },
 
     # -- setpointy napięcia / częstotliwości wyjściowej inwertera -------
@@ -618,11 +637,11 @@ registers = {
         "unit": "V",
         "device_class": "voltage",
         "display_name": "VOLT Inverter output voltage Set",
-        "interval": 30,
         "is_write_reg": True,
         "min": 200.0,
         "max": 240.0,
-        "step": 0.1
+        "step": 0.1,
+        "input_type": "holding"
     },
     "volt_inverter_output_frequency_set": {
         "addr": 20103,
@@ -630,23 +649,23 @@ registers = {
         "unit": "Hz",
         "device_class": "frequency",
         "display_name": "VOLT Inverter output frequency Set",
-        "interval": 30,
         "is_write_reg": True,
         "min": 49.0,
         "max": 60.0,
-        "step": 0.01
+        "step": 0.01,
+        "input_type": "holding"
     },
 
-    # -- SEARCH MODE – przełącznik (już był, zostawiamy identyczny klucz)
+    # -- SEARCH MODE – przełącznik -------------------------------------
     "volt_inverter_search_mode_switch": {
         "addr": 20104,
         "scale": 1,
         "unit": None,
         "display_name": "volt_inverter_search_mode_enable",
-        "interval": 30,
         "is_write_reg": True,
         "type": "switch",
-        "write_values": {0: "OFF", 1: "ON"}
+        "write_values": {0: "OFF", 1: "ON"},
+        "input_type": "holding"
     },
 
     # -- ENERGY USE MODE  (select) --------------------------------------
@@ -655,7 +674,6 @@ registers = {
         "scale": 1,
         "unit": None,
         "display_name": "VOLT Energy use mode",
-        "interval": 30,
         "is_write_reg": True,
         "type": "select",
         "options": {
@@ -663,17 +681,18 @@ registers = {
             1: "Solar Battery Grid",
             2: "Solar Grid Battery",
             3: "Grid"
-        }
+        },
+        "input_type": "holding"
     },
 
-    # -- GRID PROTECT STANDARD (surowy rejestr) -------------------------
+    # -- GRID PROTECT STANDARD -----------------------------------------
     "volt_grid_protect_standard": {
         "addr": 20111,
         "scale": 1,
         "unit": None,
         "display_name": "VOLT Grid protect standard",
-        "interval": 30,
-        "is_write_reg": True
+        "is_write_reg": True,
+        "input_type": "holding"
     },
 
     # -- SOLAR USE AIM (select 0/1) -------------------------------------
@@ -682,38 +701,38 @@ registers = {
         "scale": 1,
         "unit": None,
         "display_name": "VOLT SolarUse Aim",
-        "interval": 30,
         "is_write_reg": True,
         "type": "select",
         "options": {
             0: "Load then Battery",
             1: "Battery then Load"
-        }
+        },
+        "input_type": "holding"
     },
 
-    # -- prąd maks. rozładowania inwertera ------------------------------
+    # -- prąd maks. rozładowania ---------------------------------------
     "volt_inverter_max_discharger_current": {
         "addr": 20113,
         "scale": 0.1,
         "unit": "A",
         "device_class": "current",
         "display_name": "VOLT Inverter max discharger current",
-        "interval": 30,
         "is_write_reg": True,
         "min": 0.0,
         "max": 100.0,
-        "step": 0.1
+        "step": 0.1,
+        "input_type": "holding"
     },
 
-    # -- progi napięć akumulatora ---------------------------------------
+    # -- progi napięć ---------------------------------------------------
     "volt_battery_stop_discharging_voltage": {
         "addr": 20118,
         "scale": 0.1,
         "unit": "V",
         "device_class": "voltage",
         "display_name": "VOLT Battery stop discharging voltage",
-        "interval": 30,
-        "is_write_reg": True
+        "is_write_reg": True,
+        "input_type": "holding"
     },
     "volt_battery_stop_charging_voltage": {
         "addr": 20119,
@@ -721,8 +740,8 @@ registers = {
         "unit": "V",
         "device_class": "voltage",
         "display_name": "VOLT Battery stop charging voltage",
-        "interval": 30,
-        "is_write_reg": True
+        "is_write_reg": True,
+        "input_type": "holding"
     },
 
     # -- max prąd ładowarki sieciowej -----------------------------------
@@ -732,19 +751,19 @@ registers = {
         "unit": "A",
         "device_class": "current",
         "display_name": "VOLT Grid max charger current set",
-        "interval": 30,
-        "is_write_reg": True
+        "is_write_reg": True,
+        "input_type": "holding"
     },
 
-    # -- low / high voltage alarm setpoints -----------------------------
+    # -- alarm low / high ----------------------------------------------
     "volt_battery_low_voltage": {
         "addr": 20127,
         "scale": 0.1,
         "unit": "V",
         "device_class": "voltage",
         "display_name": "VOLT Battery low voltage",
-        "interval": 30,
-        "is_write_reg": True
+        "is_write_reg": True,
+        "input_type": "holding"
     },
     "volt_battery_high_voltage": {
         "addr": 20128,
@@ -752,8 +771,8 @@ registers = {
         "unit": "V",
         "device_class": "voltage",
         "display_name": "VOLT Battery high voltage",
-        "interval": 30,
-        "is_write_reg": True
+        "is_write_reg": True,
+        "input_type": "holding"
     },
 
     # -- max combined charger current -----------------------------------
@@ -763,8 +782,8 @@ registers = {
         "unit": "A",
         "device_class": "current",
         "display_name": "VOLT Max combine charger current",
-        "interval": 30,
-        "is_write_reg": True
+        "is_write_reg": True,
+        "input_type": "holding"
     },
 
     # -- CHARGER SOURCE PRIORITY (select) -------------------------------
@@ -773,35 +792,35 @@ registers = {
         "scale": 1,
         "unit": None,
         "display_name": "VOLT Charger source priority",
-        "interval": 30,
         "is_write_reg": True,
         "type": "select",
         "options": {
             0: "Solar first",
             2: "Solar + Grid",
             3: "Only Solar"
-        }
+        },
+        "input_type": "holding"
     },
 
-    # -- SOLAR POWER BALANCE (raw) --------------------------------------
+    # -- SOLAR POWER BALANCE -------------------------------------------
     "volt_solar_power_balance": {
         "addr": 20144,
         "scale": 1,
         "unit": None,
         "display_name": "VOLT Solar power balance",
-        "interval": 30,
-        "is_write_reg": True
+        "is_write_reg": True,
+        "input_type": "holding"
     },
 
-    # =================  MPPT SETTINGS (101xx)  ==========================
+    # =================  MPPT SETTINGS (101xx)  =========================
     "volt_mppt_float_voltage": {
         "addr": 10103,
         "scale": 0.1,
         "unit": "V",
         "device_class": "voltage",
         "display_name": "VOLT MPPT Float voltage",
-        "interval": 30,
-        "is_write_reg": True
+        "is_write_reg": True,
+        "input_type": "holding"
     },
     "volt_mppt_absorption_voltage": {
         "addr": 10104,
@@ -809,8 +828,8 @@ registers = {
         "unit": "V",
         "device_class": "voltage",
         "display_name": "VOLT MPPT Absorption voltage",
-        "interval": 30,
-        "is_write_reg": True
+        "is_write_reg": True,
+        "input_type": "holding"
     },
     "volt_mppt_battery_low_voltage": {
         "addr": 10105,
@@ -818,8 +837,8 @@ registers = {
         "unit": "V",
         "device_class": "voltage",
         "display_name": "VOLT MPPT battery low voltage",
-        "interval": 30,
-        "is_write_reg": True
+        "is_write_reg": True,
+        "input_type": "holding"
     },
     "volt_mppt_battery_high_voltage": {
         "addr": 10107,
@@ -827,8 +846,8 @@ registers = {
         "unit": "V",
         "device_class": "voltage",
         "display_name": "VOLT MPPT battery high voltage",
-        "interval": 30,
-        "is_write_reg": True
+        "is_write_reg": True,
+        "input_type": "holding"
     },
     "volt_mppt_pv_max_charger_current": {
         "addr": 10108,
@@ -836,33 +855,25 @@ registers = {
         "unit": "A",
         "device_class": "current",
         "display_name": "VOLT MPPT PV Max charger current",
-        "interval": 30,
-        "is_write_reg": True
+        "is_write_reg": True,
+        "input_type": "holding"
     },
     "volt_mppt_battery_type": {
         "addr": 10110,
         "scale": 1,
         "unit": None,
         "display_name": "VOLT MPPT Battery type",
-        "interval": 30,
-        "is_write_reg": True
-    },
-    "volt_mppt_battery_type": {
-        "addr": 10110,
-        "scale": 1,
-        "unit": None,
-        "display_name": "VOLT MPPT Battery type",
-        "interval": 30,
-        "is_write_reg": True
+        "is_write_reg": True,
+        "input_type": "holding"
     }
-}  # ←–––––––––––––––––– koniec słownika `registers`
+}  # ←–––– KONIEC słownika `registers`
 
 # ------------------------------------------------------------------
 #  Definicja obsługiwanego modelu + skróty
 # ------------------------------------------------------------------
 MODEL_CONFIGS = {
     "volt_sinus_pro_ultra_6000": {
-        "name": "Volt Sinus PRO ULTRA 6 kW 24 V",
+        "name": "Volt Sinus PRO ULTRA 6000 (24V, 60A MPPT)",
         "default_slave": 4,
         "registers": registers
     }
