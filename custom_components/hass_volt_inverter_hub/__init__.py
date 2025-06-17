@@ -41,7 +41,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     try:
         async with async_timeout.timeout(3):
             await client.connect()
-            if not client.connected:               # ←–––– JEDYNA ISTOTNA ZMIANA
+            if not client.connected:
                 raise ConfigEntryNotReady("Serial port busy / not found")
     except Exception as exc:
         _LOGGER.debug("Modbus connect error: %s", exc)
@@ -54,6 +54,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         slave=cfg.get("slave", model_cfg["default_slave"]),
         registers=model_cfg["registers"],
     )
+    # potrzebne, by grupować encje w Devices
+    coordinator.entry_id = entry.entry_id
+    coordinator.model_name = model_cfg["name"]
+
     await coordinator.async_config_entry_first_refresh()
 
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = coordinator
@@ -71,11 +75,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         async_write_register,
         schema=vol.Schema({"address": vol.Coerce(int), "value": vol.Coerce(int)}),
     )
+
     return True
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Graceful unload."""
     coordinator: VoltCoordinator = hass.data[DOMAIN].pop(entry.entry_id)
-    coordinator.client.close()          # sync – bez await
+    coordinator.client.close()
     return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)

@@ -27,6 +27,14 @@
       }
     }
   },
+  "group": {
+    "general": "General",
+    "settings": "Settings",
+    "mppt": "MPPT",
+    "battery": "Battery",
+    "grid": "Grid",
+    "inverter": "Inverter"
+  },
   "entity": {
     "sensor": {
       "volt_general_work_state":      { "name": "General work state" },

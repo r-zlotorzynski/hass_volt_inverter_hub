@@ -1,8 +1,5 @@
-# custom_components/hass_volt_inverter_hub/entities.py
 from __future__ import annotations
 import logging
-import os
-import json
 
 from homeassistant.components.sensor import SensorEntity
 from homeassistant.components.number import NumberEntity
@@ -24,16 +21,14 @@ class VoltBase:
         self._meta = coordinator.registers[key]
         self._scale = self._meta.get("scale", 1)
 
-        # podstawowe atrybuty encji
+        # unikalny identyfikator i nazwa
         self._attr_unique_id = key
         self._attr_name = self._meta.get("display_name")
         self._attr_device_class = self._meta.get("device_class")
 
-        # pobierz grupę (fallback: "general")
-        group = self._meta.get("group", "general")
-        title = self._load_group_title(group)
-
-        # każde "urządzenie" w UI HA dostaje własne DeviceInfo z identyfikatorem grupy
+        # przypiszemy encję do jednego z kilku „urządzeń” w device registry
+        group = self._meta.get("group") or self._determine_group(key)
+        title = self._group_title(group)
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, f"{coordinator.entry_id}_{group}")},
             name=f"{coordinator.model_name} – {title}",
@@ -41,21 +36,32 @@ class VoltBase:
             model=coordinator.model_name,
         )
 
-    def _load_group_title(self, group: str) -> str:
-        """Wczytaj z translations/{lang}.json sekcję 'group' → group."""
-        lang = self.coordinator.hass.config.language
-        path = os.path.join(
-            os.path.dirname(__file__),
-            "translations",
-            f"{lang}.json",
-        )
-        try:
-            with open(path, encoding="utf-8") as f:
-                data = json.load(f)
-            return data.get("group", {}).get(group, group.title())
-        except Exception as e:
-            _LOGGER.debug("Nie udało się wczytać tłumaczeń grupy %s: %s", group, e)
-            return group.title()
+    def _determine_group(self, key: str) -> str:
+        """Określa grupę na podstawie klucza i meta."""
+        if self._meta.get("is_write_reg"):
+            return "settings"
+        if key.startswith("volt_mppt_"):
+            return "mppt"
+        if key.startswith("volt_battery_"):
+            return "battery"
+        # grid / sieć
+        if "_grid_" in key or key.startswith("volt_power_grid") or key.startswith("volt_q_grid"):
+            return "grid"
+        # inverter / zasilanie wyspowe
+        if key.startswith("volt_inverter_") or key.startswith("volt_power_inverter"):
+            return "inverter"
+        return "general"
+
+    def _group_title(self, group: str) -> str:
+        """Przyjazne nazwy grup."""
+        return {
+            "settings": "Settings",
+            "mppt": "MPPT",
+            "battery": "Battery",
+            "grid": "Grid",
+            "inverter": "Inverter",
+            "general": "General",
+        }.get(group, group.title())
 
     @property
     def available(self) -> bool:

@@ -28,7 +28,8 @@ registers = {
         "device_class": None,
         "display_name": "volt_general_work_state",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "general"
     },
 
     # ---------- BATTERY & DC -------------------------------------------
@@ -40,7 +41,8 @@ registers = {
         "device_class": "voltage",
         "display_name": "volt_battery_voltage",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "battery"
     },
     "volt_battery_power": {
         "addr": 25273,
@@ -50,7 +52,8 @@ registers = {
         "display_name": "volt_battery_power",
         "is_write_reg": False,
         "input_type": "holding",
-        "interval": 5
+        "interval": 5,
+        "group": "battery"
     },
     "volt_battery_current": {
         "addr": 25274,
@@ -59,7 +62,8 @@ registers = {
         "device_class": "current",
         "display_name": "volt_battery_current",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "battery"
     },
 
     # ---------- INVERTER / GRID / BUS / LOAD ---------------------------
@@ -70,7 +74,8 @@ registers = {
         "device_class": "voltage",
         "display_name": "VOLT Inverter Voltage",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "inverter"
     },
     "volt_grid_voltage": {
         "addr": 25207,
@@ -79,7 +84,8 @@ registers = {
         "device_class": "voltage",
         "display_name": "VOLT Grid Voltage",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "grid"
     },
     "volt_bus_voltage": {
         "addr": 25208,
@@ -458,7 +464,8 @@ registers = {
                 {"key": "_volt_battery_energy_grid_h", "factor": 1},
                 {"key": "_volt_battery_energy_grid_l", "factor": 0.001}
             ]
-        }
+        },
+        "group": "battery"
     },
 
     # ---------- BATTERY POWER / CURRENT (25273-25274) już w części 1 ----
@@ -471,7 +478,8 @@ registers = {
         "device_class": None,
         "display_name": "VOLT MPPT charger workstate",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "mppt"
     },
     "volt_mppt_work_state": {
         "addr": 15202,
@@ -480,7 +488,8 @@ registers = {
         "device_class": None,
         "display_name": "VOLT MPPT workstate",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "mppt"
     },
     "volt_mppt_charging_work_state": {
         "addr": 15203,
@@ -489,7 +498,8 @@ registers = {
         "device_class": None,
         "display_name": "VOLT MPPT charging workstate",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "mppt"
     },
     "volt_mppt_charger_voltage": {
         "addr": 15205,
@@ -499,7 +509,8 @@ registers = {
         "device_class": "voltage",
         "display_name": "volt_mppt_charger_voltage",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "mppt"
     },
     "volt_mppt_charger_battery_voltage": {
         "addr": 15206,
@@ -509,7 +520,8 @@ registers = {
         "device_class": "voltage",
         "display_name": "volt_mppt_charger_battery_voltage",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "mppt"
     },
     "volt_mppt_charger_current": {
         "addr": 15207,
@@ -518,7 +530,8 @@ registers = {
         "device_class": "current",
         "display_name": "volt_mppt_charger_current",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "mppt"
     },
     "volt_mppt_charger_power": {
         "addr": 15208,
@@ -527,7 +540,8 @@ registers = {
         "device_class": "power",
         "display_name": "volt_mppt_charger_power",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "mppt"
     },
     "volt_mppt_radiator_temperature": {
         "addr": 15209,
@@ -536,7 +550,8 @@ registers = {
         "device_class": "temperature",
         "display_name": "volt_mppt_radiator_temperature",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "mppt"
     },
 
     # ---------- MPPT RELAY STATES --------------------------------------
@@ -547,7 +562,8 @@ registers = {
         "device_class": None,
         "display_name": "VOLT MPPT battery relay State",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "mppt"
     },
     "volt_mppt_pv_relay_state": {
         "addr": 15212,
@@ -556,7 +572,8 @@ registers = {
         "device_class": None,
         "display_name": "VOLT MPPT PV relay State",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "mppt"
     },
 
     # ---------- MPPT – LICZNIKI ENERGII --------------------------------
@@ -583,7 +600,8 @@ registers = {
                 {"key": "_volt_mppt_accumulated_pv_energy_h", "factor": 1},
                 {"key": "_volt_mppt_accumulated_pv_energy_l",   "factor": 0.001}
             ]
-        }
+        },
+        "group": "mppt"
     },
     "volt_mppt_accumulated_day": {
         "addr": 15219,
@@ -592,7 +610,8 @@ registers = {
         "device_class": None,
         "display_name": "VOLT MPPT Accumulated day",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "mppt"
     },
     "volt_mppt_accumulated_hour": {
         "addr": 15220,
@@ -601,7 +620,8 @@ registers = {
         "device_class": None,
         "display_name": "VOLT MPPT Accumulated hour",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "mppt"
     },
     "volt_mppt_accumulated_minute": {
         "addr": 15221,
@@ -610,7 +630,8 @@ registers = {
         "device_class": None,
         "display_name": "VOLT MPPT Accumulated minute",
         "is_write_reg": False,
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "mppt"
     },
 
     # ---------- SYSTEM FLAGI / STRZAŁKI --------------------------------
@@ -672,7 +693,8 @@ registers = {
         "is_write_reg": True,
         "type": "switch",
         "write_values": {0: "OFF", 1: "ON"},
-        "input_type": "holding"
+        "input_type": "holding",
+        "group": "settings"
     },
 
     # -- ENERGY USE MODE  (select) --------------------------------------

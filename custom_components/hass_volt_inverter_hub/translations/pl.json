@@ -27,6 +27,14 @@
       }
     }
   },
+  "group": {
+    "general": "Ogólne",
+    "settings": "Ustawienia",
+    "mppt": "MPPT",
+    "battery": "Akumulator",
+    "grid": "Sieć",
+    "inverter": "Inwerter"
+  },
   "entity": {
     "sensor": {
       "volt_general_work_state":      { "name": "Stan pracy (ogólny)" },
