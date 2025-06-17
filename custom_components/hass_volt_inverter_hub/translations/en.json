@@ -99,20 +99,18 @@
     },
 
     "number": {
-      "volt_inverter_output_voltage_set":   { "name": "Output voltage set" },
-      "volt_inverter_output_frequency_set": { "name": "Output frequency set" },
+      "volt_inverter_output_voltage_set":     { "name": "Output voltage set" },
       "volt_inverter_max_discharger_current": { "name": "Max discharger current" },
       "volt_battery_stop_discharging_voltage": { "name": "Stop-discharge voltage" },
-      "volt_battery_stop_charging_voltage": { "name": "Stop-charge voltage" },
-      "volt_grid_max_charger_current_set":  { "name": "Grid max charge current" },
-      "volt_battery_low_voltage":           { "name": "Battery low voltage" },
-      "volt_battery_high_voltage":          { "name": "Battery high voltage" },
-      "volt_max_combine_charger_current":   { "name": "Max combined charge current" },
-      "volt_mppt_float_voltage":            { "name": "MPPT float voltage" },
-      "volt_mppt_absorption_voltage":       { "name": "MPPT absorption voltage" },
-      "volt_mppt_battery_low_voltage":      { "name": "MPPT batt low voltage" },
-      "volt_mppt_battery_high_voltage":     { "name": "MPPT batt high voltage" },
-      "volt_mppt_pv_max_charger_current":   { "name": "MPPT max PV current" }
+      "volt_battery_stop_charging_voltage":   { "name": "Stop-charge voltage" },
+      "volt_battery_low_voltage":             { "name": "Battery low voltage" },
+      "volt_battery_high_voltage":            { "name": "Battery high voltage" },
+      "volt_max_combine_charger_current":     { "name": "Max combined charge current" },
+      "volt_mppt_float_voltage":              { "name": "MPPT float voltage" },
+      "volt_mppt_absorption_voltage":         { "name": "MPPT absorption voltage" },
+      "volt_mppt_battery_low_voltage":        { "name": "MPPT batt low voltage" },
+      "volt_mppt_battery_high_voltage":       { "name": "MPPT batt high voltage" },
+      "volt_mppt_pv_max_charger_current":     { "name": "MPPT max PV current" }
     },
 
     "switch": {
@@ -123,7 +121,9 @@
     "select": {
       "volt_energy_use_mode":               { "name": "Energy use mode" },
       "volt_solar_use_aim":                 { "name": "Solar use aim" },
-      "volt_charger_source_priority":       { "name": "Charger source priority" }
+      "volt_charger_source_priority":       { "name": "Charger source priority" },
+      "volt_inverter_output_frequency_set": { "name": "Output frequency (50/60 Hz)" },
+      "volt_grid_max_charger_current_set":  { "name": "Grid max charge current (20/30 A)" }
     }
   }
 }

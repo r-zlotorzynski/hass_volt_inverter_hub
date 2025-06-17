@@ -100,11 +100,9 @@
 
     "number": {
       "volt_inverter_output_voltage_set":     { "name": "Ustawienie napięcia AC" },
-      "volt_inverter_output_frequency_set":   { "name": "Ustawienie częstotliwości" },
       "volt_inverter_max_discharger_current": { "name": "Max prąd rozładowania" },
       "volt_battery_stop_discharging_voltage":{ "name": "Próg stop-discharge" },
       "volt_battery_stop_charging_voltage":   { "name": "Próg stop-charge" },
-      "volt_grid_max_charger_current_set":    { "name": "Max prąd ładowania (sieć)" },
       "volt_battery_low_voltage":             { "name": "Alarm: niski V batt" },
       "volt_battery_high_voltage":            { "name": "Alarm: wysoki V batt" },
       "volt_max_combine_charger_current":     { "name": "Max prąd ładowarki łącznej" },
@@ -123,7 +121,9 @@
     "select": {
       "volt_energy_use_mode":               { "name": "Tryb wykorzystania energii" },
       "volt_solar_use_aim":                 { "name": "Priorytet PV" },
-      "volt_charger_source_priority":       { "name": "Priorytet źródła ładowania" }
+      "volt_charger_source_priority":       { "name": "Priorytet źródła ładowania" },
+      "volt_inverter_output_frequency_set": { "name": "Częstotliwość wyjściowa (50/60 Hz)" },
+      "volt_grid_max_charger_current_set":  { "name": "Max prąd ładowania z sieci (20/30 A)" }
     }
   }
 }
