@@ -5,7 +5,7 @@ CONST – Volt Inverter Hub for HASS
 """
 from __future__ import annotations
 
-DOMAIN           = "volt_inverter_hub_for_hass"
+DOMAIN           = "hass_volt_inverter_hub"
 DEFAULT_PORT     = "/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0"
 DEFAULT_BAUDRATE = 19200
 UPDATE_INTERVAL  = 10          # encje bez własnego „interval” przyjmą 10 s
