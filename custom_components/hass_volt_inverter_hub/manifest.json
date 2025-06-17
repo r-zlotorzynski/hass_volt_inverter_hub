@@ -1,9 +1,10 @@
 {
   "domain": "hass_volt_inverter_hub",
   "name": "Volt Inverter Hub (Modbus)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "config_flow": true,
   "documentation": "https://github.com/r-zlotorzynski/hass_volt_inverter_hub",
   "requirements": ["pymodbus==3.7.0"],
-  "codeowners": ["@r-zlotorzynski"]
+  "codeowners": ["@r-zlotorzynski"],
+  "translations": ["translations"]
 }

@@ -1,4 +1,5 @@
 # custom_components/hass_volt_inverter_hub/entities.py
+
 from __future__ import annotations
 import logging
 import os
@@ -16,7 +17,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class VoltBase:
-    """Mixin z koordynatorem, metadanymi i wspólnym device_info."""
+    """Mixin z koordynatorem, metadanymi i wspólnym DeviceInfo."""
 
     def __init__(self, coordinator, key: str):
         self.coordinator = coordinator
@@ -24,25 +25,44 @@ class VoltBase:
         self._meta = coordinator.registers[key]
         self._scale = self._meta.get("scale", 1)
 
-        # podstawowe atrybuty encji
+        # ✅ unikalny identyfikator encji
         self._attr_unique_id = key
-        self._attr_name = self._meta.get("display_name")
+        # 2) PODPOWIEDŹ dla entity_registry,
+        #    dzięki czemu entity_id przyjmie formę sensor.volt_battery_voltage
+        self._attr_suggested_object_id = key
+        # ✅ użyj wbudowanego mechanizmu tłumaczeń HA
+        #    HA automatycznie zaczyta z translations/<lang>.json:
+        #    entity.sensor.<key>.name etc.
+        self._attr_translation_key = key
+        self._attr_has_entity_name = True
+
+        # ✅ device_class, jeśli jest
         self._attr_device_class = self._meta.get("device_class")
 
-        # pobierz grupę (fallback: "general")
+        # ——— grupowanie na poziomie DeviceInfo —–
         group = self._meta.get("group", "general")
         title = self._load_group_title(group)
 
-        # każde "urządzenie" w UI HA dostaje własne DeviceInfo z identyfikatorem grupy
+        # self._attr_device_info = DeviceInfo(
+        #     identifiers={(DOMAIN, f"{coordinator.entry_id}_{group}")},
+        #     name=f"{coordinator.model_name} – {title}",
+        #     manufacturer="VOLT",
+        #     model=coordinator.model_name,
+        # )
+         # każde "urządzenie" (grupa) ma własne DeviceInfo
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, f"{coordinator.entry_id}_{group}")},
-            name=f"{coordinator.model_name} – {title}",
-            manufacturer="VOLT",
-            model=coordinator.model_name,
+            # nazwa widoczna w UI = sama nazwa grupy (PL/EN z pliku translations)
+            name=title, # wersja bez nazwy modelu
+            # name=f"{coordinator.model_name} – {title}", # wersja z nazwą modelu
+            manufacturer="Volt",
+            # pełna nazwa modelu można zostawić w atrybucie 'model' (niewidoczna w nagłówku)
+            model=coordinator.model_name
         )
 
+
     def _load_group_title(self, group: str) -> str:
-        """Wczytaj z translations/{lang}.json sekcję 'group' → group."""
+        """Wczytaj tytuł grupy z translations/<lang>.json → sekcja 'group'."""
         lang = self.coordinator.hass.config.language
         path = os.path.join(
             os.path.dirname(__file__),
@@ -66,6 +86,11 @@ class VoltBase:
 class VoltSensor(VoltBase, SensorEntity):
     """Sensor tylko-do-odczytu."""
 
+    def __init__(self, coordinator, key):
+        super().__init__(coordinator, key)
+        # ↓ wymuszamy stały identyfikator
+        self.entity_id = f"sensor.{key}"
+
     @property
     def native_unit_of_measurement(self):
         return self._meta.get("unit")
@@ -83,14 +108,15 @@ class VoltSensor(VoltBase, SensorEntity):
 
 # ------------------------------------------------------------------
 class VoltNumber(VoltBase, NumberEntity):
-    """Rejestr zapisowy jako encja Number."""
+    """Rejestr zapisywalny jako encja Number."""
 
-    def __init__(self, coordinator, key: str):
+    def __init__(self, coordinator, key):
         super().__init__(coordinator, key)
+        self.entity_id = f"number.{key}"
         self._attr_native_unit_of_measurement = self._meta.get("unit")
-        self._attr_min_value = self._meta.get("min")
-        self._attr_max_value = self._meta.get("max")
-        self._attr_step = self._meta.get("step", 1)
+        self._attr_native_min_value = self._meta.get("min")
+        self._attr_native_max_value = self._meta.get("max")
+        self._attr_native_step = self._meta.get("step", 1)
         self._addr = self._meta["addr"]
 
     @property
@@ -113,6 +139,7 @@ class VoltSwitch(VoltBase, SwitchEntity):
 
     def __init__(self, coordinator, key: str):
         super().__init__(coordinator, key)
+        self.entity_id = f"switch.{key}"
         self._addr = self._meta["addr"]
 
     @property
@@ -140,6 +167,7 @@ class VoltSelect(VoltBase, SelectEntity):
 
     def __init__(self, coordinator, key: str):
         super().__init__(coordinator, key)
+        self.entity_id = f"select.{key}"
         self._addr = self._meta["addr"]
         self._options_dict = self._meta["options"]
         self._attr_options = list(self._options_dict.values())

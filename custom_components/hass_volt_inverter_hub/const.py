@@ -26,7 +26,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "volt_general_work_state",
+        # "display_name": "volt_general_work_state",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "general"
@@ -39,7 +39,7 @@ registers = {
         "precision": 2,
         "unit": "V",
         "device_class": "voltage",
-        "display_name": "volt_battery_voltage",
+        # "display_name": "volt_battery_voltage",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "battery"
@@ -49,7 +49,7 @@ registers = {
         "scale": 1,
         "unit": "W",
         "device_class": "power",
-        "display_name": "volt_battery_power",
+        # "display_name": "volt_battery_power",
         "is_write_reg": False,
         "input_type": "holding",
         "interval": 5,
@@ -60,7 +60,7 @@ registers = {
         "scale": 1,
         "unit": "A",
         "device_class": "current",
-        "display_name": "volt_battery_current",
+        # "display_name": "volt_battery_current",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "battery"
@@ -72,7 +72,7 @@ registers = {
         "scale": 0.1,
         "unit": "V",
         "device_class": "voltage",
-        "display_name": "VOLT Inverter Voltage",
+        # "display_name": "VOLT Inverter Voltage",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "inverter"
@@ -82,7 +82,7 @@ registers = {
         "scale": 0.1,
         "unit": "V",
         "device_class": "voltage",
-        "display_name": "VOLT Grid Voltage",
+        # "display_name": "VOLT Grid Voltage",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "grid"
@@ -93,7 +93,7 @@ registers = {
         "precision": 1,
         "unit": "V",
         "device_class": "voltage",
-        "display_name": "VOLT BUS Voltage",
+        # "display_name": "VOLT BUS Voltage",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -102,7 +102,7 @@ registers = {
         "scale": 0.1,
         "unit": "A",
         "device_class": "current",
-        "display_name": "VOLT Control Current",
+        # "display_name": "VOLT Control Current",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -111,7 +111,7 @@ registers = {
         "scale": 0.1,
         "unit": "A",
         "device_class": "current",
-        "display_name": "VOLT Inverter Current",
+        # "display_name": "VOLT Inverter Current",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -120,7 +120,7 @@ registers = {
         "scale": 0.1,
         "unit": "A",
         "device_class": "current",
-        "display_name": "VOLT Grid Current",
+        # "display_name": "VOLT Grid Current",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -129,7 +129,7 @@ registers = {
         "scale": 0.1,
         "unit": "A",
         "device_class": "current",
-        "display_name": "VOLT Load Current",
+        # "display_name": "VOLT Load Current",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -138,7 +138,7 @@ registers = {
         "scale": 1,
         "unit": "W",
         "device_class": "power",
-        "display_name": "VOLT Power Inverter",
+        # "display_name": "VOLT Power Inverter",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -147,7 +147,7 @@ registers = {
         "scale": 1,
         "unit": "W",
         "device_class": "power",
-        "display_name": "VOLT Power Grid",
+        # "display_name": "VOLT Power Grid",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -156,7 +156,7 @@ registers = {
         "scale": 1,
         "unit": "W",
         "device_class": "power",
-        "display_name": "VOLT Power Load",
+        # "display_name": "VOLT Power Load",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -165,7 +165,7 @@ registers = {
         "scale": 1,
         "unit": "%",
         "device_class": "power_factor",
-        "display_name": "VOLT Load Percent",
+        # "display_name": "VOLT Load Percent",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -176,7 +176,7 @@ registers = {
         "scale": 1,
         "unit": "VA",
         "device_class": "apparent_power",
-        "display_name": "VOLT S Inverter",
+        # "display_name": "VOLT S Inverter",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -185,7 +185,7 @@ registers = {
         "scale": 1,
         "unit": "VA",
         "device_class": "apparent_power",
-        "display_name": "VOLT S Grid",
+        # "display_name": "VOLT S Grid",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -194,7 +194,7 @@ registers = {
         "scale": 1,
         "unit": "VA",
         "device_class": "apparent_power",
-        "display_name": "VOLT S Load",
+        # "display_name": "VOLT S Load",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -203,7 +203,7 @@ registers = {
         "scale": 1,
         "unit": "var",
         "device_class": "reactive_power",
-        "display_name": "VOLT Q Inverter",
+        # "display_name": "VOLT Q Inverter",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -212,7 +212,7 @@ registers = {
         "scale": 1,
         "unit": "var",
         "device_class": "reactive_power",
-        "display_name": "VOLT Q Grid",
+        # "display_name": "VOLT Q Grid",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -221,7 +221,7 @@ registers = {
         "scale": 1,
         "unit": "var",
         "device_class": "reactive_power",
-        "display_name": "VOLT Q Load",
+        # "display_name": "VOLT Q Load",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -232,7 +232,7 @@ registers = {
         "scale": 0.01,
         "unit": "Hz",
         "device_class": "frequency",
-        "display_name": "VOLT Frequency Inverter",
+        # "display_name": "VOLT Frequency Inverter",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -241,7 +241,7 @@ registers = {
         "scale": 0.01,
         "unit": "Hz",
         "device_class": "frequency",
-        "display_name": "VOLT Frequency Grid",
+        # "display_name": "VOLT Frequency Grid",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -252,7 +252,7 @@ registers = {
         "scale": 1,
         "unit": "°C",
         "device_class": "temperature",
-        "display_name": "VOLT DC Radiator Temperature",
+        # "display_name": "VOLT DC Radiator Temperature",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -262,7 +262,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "VOLT Inverter Relay State",
+        # "display_name": "VOLT Inverter Relay State",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -271,7 +271,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "VOLT Grid Relay State",
+        # "display_name": "VOLT Grid Relay State",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -280,7 +280,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "VOLT Load Relay State",
+        # "display_name": "VOLT Load Relay State",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -289,7 +289,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "VOLT N Line Relay State",
+        # "display_name": "VOLT N Line Relay State",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -298,7 +298,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "VOLT DC Relay State",
+        # "display_name": "VOLT DC Relay State",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -307,7 +307,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "VOLT Earth Relay State",
+        # "display_name": "VOLT Earth Relay State",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -321,7 +321,7 @@ registers = {
         "addr": 25246, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_accumulated_charger_power": {
-        "display_name": "Charger energy",
+        # "display_name": "Charger energy",
         "unit": "kWh", "device_class": "energy",
         "state_class": "total_increasing",
         "precision": 3,
@@ -340,7 +340,7 @@ registers = {
         "addr": 25248, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_accumulated_discharger_power": {
-        "display_name": "Discharger energy",
+        # "display_name": "Discharger energy",
         "unit": "kWh", "device_class": "energy",
         "state_class": "total_increasing",
         "precision": 3,
@@ -359,7 +359,7 @@ registers = {
         "addr": 25250, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_accumulated_buy_power": {
-        "display_name": "Grid-buy energy",
+        # "display_name": "Grid-buy energy",
         "unit": "kWh", "device_class": "energy",
         "state_class": "total_increasing",
         "precision": 3,
@@ -378,7 +378,7 @@ registers = {
         "addr": 25252, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_accumulated_sell_power": {
-        "display_name": "Grid-sell energy",
+        # "display_name": "Grid-sell energy",
         "unit": "kWh", "device_class": "energy",
         "state_class": "total_increasing",
         "precision": 3,
@@ -397,7 +397,7 @@ registers = {
         "addr": 25254, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_accumulated_load_power": {
-        "display_name": "Load energy",
+        # "display_name": "Load energy",
         "unit": "kWh", "device_class": "energy",
         "state_class": "total_increasing",
         "precision": 3,
@@ -416,7 +416,7 @@ registers = {
         "addr": 25256, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_accumulated_self_use_power": {
-        "display_name": "Self-use energy",
+        # "display_name": "Self-use energy",
         "unit": "kWh", "device_class": "energy",
         "state_class": "total_increasing",
         "precision": 3,
@@ -435,7 +435,7 @@ registers = {
         "addr": 25258, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_accumulated_pv_sell_power": {
-        "display_name": "PV-sell energy",
+        # "display_name": "PV-sell energy",
         "unit": "kWh", "device_class": "energy",
         "state_class": "total_increasing",
         "precision": 3,
@@ -455,7 +455,7 @@ registers = {
         "addr": 25260, "scale": 100,  "input_type": "holding", "expose": False
     },
     "volt_battery_energy_accumulated_from_grid": {
-        "display_name": "Battery-grid energy",
+        # "display_name": "Battery-grid energy",
         "unit": "kWh", "device_class": "energy",
         "state_class": "total_increasing",
         "precision": 3,
@@ -476,7 +476,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "VOLT MPPT charger workstate",
+        # "display_name": "VOLT MPPT charger workstate",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "mppt"
@@ -486,7 +486,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "VOLT MPPT workstate",
+        # "display_name": "VOLT MPPT workstate",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "mppt"
@@ -496,7 +496,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "VOLT MPPT charging workstate",
+        # "display_name": "VOLT MPPT charging workstate",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "mppt"
@@ -507,7 +507,7 @@ registers = {
         "precision": 2,
         "unit": "V",
         "device_class": "voltage",
-        "display_name": "volt_mppt_charger_voltage",
+        # "display_name": "volt_mppt_charger_voltage",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "mppt"
@@ -518,7 +518,7 @@ registers = {
         "precision": 2,
         "unit": "V",
         "device_class": "voltage",
-        "display_name": "volt_mppt_charger_battery_voltage",
+        # "display_name": "volt_mppt_charger_battery_voltage",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "mppt"
@@ -528,7 +528,7 @@ registers = {
         "scale": 0.1,
         "unit": "A",
         "device_class": "current",
-        "display_name": "volt_mppt_charger_current",
+        # "display_name": "volt_mppt_charger_current",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "mppt"
@@ -538,7 +538,7 @@ registers = {
         "scale": 1,
         "unit": "W",
         "device_class": "power",
-        "display_name": "volt_mppt_charger_power",
+        # "display_name": "volt_mppt_charger_power",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "mppt"
@@ -548,7 +548,7 @@ registers = {
         "scale": 1,
         "unit": "°C",
         "device_class": "temperature",
-        "display_name": "volt_mppt_radiator_temperature",
+        # "display_name": "volt_mppt_radiator_temperature",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "mppt"
@@ -560,7 +560,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "VOLT MPPT battery relay State",
+        # "display_name": "VOLT MPPT battery relay State",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "mppt"
@@ -570,7 +570,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "VOLT MPPT PV relay State",
+        # "display_name": "VOLT MPPT PV relay State",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "mppt"
@@ -590,7 +590,7 @@ registers = {
         "expose": False
     },
     "volt_mppt_accumulated_pv_energy": {
-        "display_name": "PV energy",
+        # "display_name": "PV energy",
         "unit": "kWh",
         "device_class": "energy",
         "state_class": "total_increasing",
@@ -608,7 +608,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "VOLT MPPT Accumulated day",
+        # "display_name": "VOLT MPPT Accumulated day",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "mppt"
@@ -618,7 +618,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "VOLT MPPT Accumulated hour",
+        # "display_name": "VOLT MPPT Accumulated hour",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "mppt"
@@ -628,7 +628,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "VOLT MPPT Accumulated minute",
+        # "display_name": "VOLT MPPT Accumulated minute",
         "is_write_reg": False,
         "input_type": "holding",
         "group": "mppt"
@@ -640,7 +640,7 @@ registers = {
         "scale": 1,
         "unit": None,
         "device_class": None,
-        "display_name": "VOLT Arrow Flag",
+        # "display_name": "VOLT Arrow Flag",
         "is_write_reg": False,
         "input_type": "holding"
     },
@@ -651,7 +651,7 @@ registers = {
         "addr": 20101,
         "scale": 1,
         "unit": None,
-        "display_name": "Volt offgrid work enable",
+        # "display_name": "Volt offgrid work enable",
         "is_write_reg": True,
         "type": "switch",
         "write_values": {0: "OFF", 1: "ON"},
@@ -664,7 +664,7 @@ registers = {
         "scale": 0.1,
         "unit": "V",
         "device_class": "voltage",
-        "display_name": "VOLT Inverter output voltage Set",
+        # "display_name": "VOLT Inverter output voltage Set",
         "is_write_reg": True,
         "min": 220,
         "max": 240,
@@ -677,7 +677,7 @@ registers = {
         "scale": 0.01,
         "unit": "Hz",
         "device_class": "frequency",
-        "display_name": "VOLT Inverter output frequency Set",
+        # "display_name": "VOLT Inverter output frequency Set",
         "is_write_reg": True,
         "type": "select",
         "options": {5000: "50 Hz", 6000: "60 Hz"},
@@ -689,7 +689,7 @@ registers = {
         "addr": 20104,
         "scale": 1,
         "unit": None,
-        "display_name": "volt_inverter_search_mode_enable",
+        # "display_name": "volt_inverter_search_mode_enable",
         "is_write_reg": True,
         "type": "switch",
         "write_values": {0: "OFF", 1: "ON"},
@@ -702,7 +702,7 @@ registers = {
         "addr": 20109,
         "scale": 1,
         "unit": None,
-        "display_name": "VOLT Energy use mode",
+        # "display_name": "VOLT Energy use mode",
         "is_write_reg": True,
         "type": "select",
         "options": {
@@ -719,7 +719,7 @@ registers = {
         "addr": 20111,
         "scale": 1,
         "unit": None,
-        "display_name": "VOLT Grid protect standard",
+        # "display_name": "VOLT Grid protect standard",
         "is_write_reg": True,
         "input_type": "holding"
     },
@@ -729,7 +729,7 @@ registers = {
         "addr": 20112,
         "scale": 1,
         "unit": None,
-        "display_name": "VOLT SolarUse Aim",
+        # "display_name": "VOLT SolarUse Aim",
         "is_write_reg": True,
         "type": "select",
         "options": {
@@ -745,7 +745,7 @@ registers = {
         "scale": 0.1,
         "unit": "A",
         "device_class": "current",
-        "display_name": "VOLT Inverter max discharger current",
+        # "display_name": "VOLT Inverter max discharger current",
         "is_write_reg": False,      # ← zmiana!
         "input_type": "holding",
     },
@@ -756,7 +756,7 @@ registers = {
         "scale": 0.1,
         "unit": "V",
         "device_class": "voltage",
-        "display_name": "VOLT Battery stop discharging voltage",
+        # "display_name": "VOLT Battery stop discharging voltage",
         "is_write_reg": True,
         "min": 22.0,
         "max": 29.0,
@@ -769,7 +769,7 @@ registers = {
         "scale": 0.1,
         "unit": "V",
         "device_class": "voltage",
-        "display_name": "VOLT Battery stop charging voltage",
+        # "display_name": "VOLT Battery stop charging voltage",
         "is_write_reg": True,
         "min": 22.0,
         "max": 29.0,
@@ -783,7 +783,7 @@ registers = {
         "scale": 0.1,
         "unit": "A",
         "device_class": "current",
-        "display_name": "VOLT Grid max charger current set",
+        # "display_name": "VOLT Grid max charger current set",
         "is_write_reg": True,
         "type": "select",
         "options": {200: "20 A", 300: "30 A"},
@@ -796,7 +796,7 @@ registers = {
         "scale": 0.1,
         "unit": "V",
         "device_class": "voltage",
-        "display_name": "VOLT Battery low voltage",
+        # "display_name": "VOLT Battery low voltage",
         "is_write_reg": True,
         "min": 20.0,
         "max": 24.0,
@@ -808,7 +808,7 @@ registers = {
         "scale": 0.1,
         "unit": "V",
         "device_class": "voltage",
-        "display_name": "VOLT Battery high voltage",
+        # "display_name": "VOLT Battery high voltage",
         "is_write_reg": True,
         "input_type": "holding"
     },
@@ -819,7 +819,7 @@ registers = {
         "scale": 0.1,
         "unit": "A",
         "device_class": "current",
-        "display_name": "VOLT Max combine charger current",
+        # "display_name": "VOLT Max combine charger current",
         "is_write_reg": True,
         "min": 1,
         "max": 80,
@@ -832,7 +832,7 @@ registers = {
         "addr": 20143,
         "scale": 1,
         "unit": None,
-        "display_name": "VOLT Charger source priority",
+        # "display_name": "VOLT Charger source priority",
         "is_write_reg": True,
         "type": "select",
         "options": {
@@ -848,7 +848,7 @@ registers = {
         "addr": 20144,
         "scale": 1,
         "unit": None,
-        "display_name": "VOLT Solar power balance",
+        # "display_name": "VOLT Solar power balance",
         "is_write_reg": True,
         "input_type": "holding"
     },
@@ -860,7 +860,7 @@ registers = {
         "scale": 0.1,
         "unit": "V",
         "device_class": "voltage",
-        "display_name": "VOLT MPPT Float voltage",
+        # "display_name": "VOLT MPPT Float voltage",
         "is_write_reg": True,
         "min": 24.0,
         "max": 29.2,
@@ -872,7 +872,7 @@ registers = {
         "scale": 0.1,
         "unit": "V",
         "device_class": "voltage",
-        "display_name": "VOLT MPPT Absorption voltage",
+        # "display_name": "VOLT MPPT Absorption voltage",
         "is_write_reg": True,
         "input_type": "holding"
     },
@@ -881,7 +881,7 @@ registers = {
         "scale": 0.1,
         "unit": "V",
         "device_class": "voltage",
-        "display_name": "VOLT MPPT battery low voltage",
+        # "display_name": "VOLT MPPT battery low voltage",
         "is_write_reg": True,
         "input_type": "holding"
     },
@@ -890,7 +890,7 @@ registers = {
         "scale": 0.1,
         "unit": "V",
         "device_class": "voltage",
-        "display_name": "VOLT MPPT battery high voltage",
+        # "display_name": "VOLT MPPT battery high voltage",
         "is_write_reg": True,
         "input_type": "holding"
     },
@@ -900,7 +900,7 @@ registers = {
         "scale": 0.1,
         "unit": "A",
         "device_class": "current",
-        "display_name": "VOLT MPPT PV Max charger current",
+        # "display_name": "VOLT MPPT PV Max charger current",
         "is_write_reg": False,      # ← zmiana!
         "input_type": "holding",
     },
@@ -908,7 +908,7 @@ registers = {
         "addr": 10110,
         "scale": 1,
         "unit": None,
-        "display_name": "VOLT MPPT Battery type",
+        # "display_name": "VOLT MPPT Battery type",
         "is_write_reg": True,
         "input_type": "holding"
     }
