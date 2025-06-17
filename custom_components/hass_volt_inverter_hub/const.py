@@ -12,6 +12,12 @@ UPDATE_INTERVAL  = 10          # encje bez własnego „interval” przyjmą 10 
 
 # ------------------------------------------------------------------
 #  ↓↓↓ MAPA REJESTRÓW – kontynuacja w kolejnych wiadomościach ↓↓↓
+# (start, length, fn) → przykładowe klucze
+# 25201  … 25226   (26 reg) holding  → volt_general_work_state … volt_frequency_grid
+# 25233  … 25260   (28 reg) holding  → temperatury, energy „H”/„L”, itp.
+# 15201  … 15221   (21 reg) holding  → cała sekcja MPPT
+# 20101  … 20144   (44 reg) holding  → ustawienia
+# 10103  … 10110   ( 8 reg) holding  → MPPT set-points
 # ------------------------------------------------------------------
 registers = {
     # ---------- GENERAL -------------------------------------------------
@@ -498,6 +504,7 @@ registers = {
     "volt_mppt_charger_battery_voltage": {
         "addr": 15206,
         "scale": 0.1,
+        "precision": 2,
         "unit": "V",
         "device_class": "voltage",
         "display_name": "volt_mppt_charger_battery_voltage",
@@ -638,11 +645,12 @@ registers = {
         "device_class": "voltage",
         "display_name": "VOLT Inverter output voltage Set",
         "is_write_reg": True,
-        "min": 200.0,
-        "max": 240.0,
-        "step": 0.1,
-        "input_type": "holding"
+        "min": 220,
+        "max": 240,
+        "step": 1,
+        "input_type": "holding",
     },
+    # Inverter frequency Set – 50 Hz lub 60 Hz
     "volt_inverter_output_frequency_set": {
         "addr": 20103,
         "scale": 0.01,
@@ -650,10 +658,9 @@ registers = {
         "device_class": "frequency",
         "display_name": "VOLT Inverter output frequency Set",
         "is_write_reg": True,
-        "min": 49.0,
-        "max": 60.0,
-        "step": 0.01,
-        "input_type": "holding"
+        "type": "select",
+        "options": {5000: "50 Hz", 6000: "60 Hz"},
+        "input_type": "holding",
     },
 
     # -- SEARCH MODE – przełącznik -------------------------------------
@@ -710,21 +717,18 @@ registers = {
         "input_type": "holding"
     },
 
-    # -- prąd maks. rozładowania ---------------------------------------
+    # Inverter max discharger current – TYLKO ODCZYT
     "volt_inverter_max_discharger_current": {
         "addr": 20113,
         "scale": 0.1,
         "unit": "A",
         "device_class": "current",
         "display_name": "VOLT Inverter max discharger current",
-        "is_write_reg": True,
-        "min": 0.0,
-        "max": 100.0,
-        "step": 0.1,
-        "input_type": "holding"
+        "is_write_reg": False,      # ← zmiana!
+        "input_type": "holding",
     },
 
-    # -- progi napięć ---------------------------------------------------
+    # -- Battery stop discharging – 22.0 … 29.0 V
     "volt_battery_stop_discharging_voltage": {
         "addr": 20118,
         "scale": 0.1,
@@ -732,8 +736,12 @@ registers = {
         "device_class": "voltage",
         "display_name": "VOLT Battery stop discharging voltage",
         "is_write_reg": True,
-        "input_type": "holding"
+        "min": 22.0,
+        "max": 29.0,
+        "step": 0.1,
+        "input_type": "holding",
     },
+    # Battery stop charging – 22.0 … 29.0 V
     "volt_battery_stop_charging_voltage": {
         "addr": 20119,
         "scale": 0.1,
@@ -741,7 +749,10 @@ registers = {
         "device_class": "voltage",
         "display_name": "VOLT Battery stop charging voltage",
         "is_write_reg": True,
-        "input_type": "holding"
+        "min": 22.0,
+        "max": 29.0,
+        "step": 0.1,
+        "input_type": "holding",
     },
 
     # -- max prąd ładowarki sieciowej -----------------------------------
@@ -752,10 +763,12 @@ registers = {
         "device_class": "current",
         "display_name": "VOLT Grid max charger current set",
         "is_write_reg": True,
-        "input_type": "holding"
+        "type": "select",
+        "options": {200: "20 A", 300: "30 A"},
+        "input_type": "holding",
     },
 
-    # -- alarm low / high ----------------------------------------------
+    # -- Battery low voltage – 20.0 … 24.0 V
     "volt_battery_low_voltage": {
         "addr": 20127,
         "scale": 0.1,
@@ -763,7 +776,10 @@ registers = {
         "device_class": "voltage",
         "display_name": "VOLT Battery low voltage",
         "is_write_reg": True,
-        "input_type": "holding"
+        "min": 20.0,
+        "max": 24.0,
+        "step": 0.1,
+        "input_type": "holding",
     },
     "volt_battery_high_voltage": {
         "addr": 20128,
@@ -775,7 +791,7 @@ registers = {
         "input_type": "holding"
     },
 
-    # -- max combined charger current -----------------------------------
+    # -- Max combined charger current – 1 … 80 A
     "volt_max_combine_charger_current": {
         "addr": 20132,
         "scale": 0.1,
@@ -783,7 +799,10 @@ registers = {
         "device_class": "current",
         "display_name": "VOLT Max combine charger current",
         "is_write_reg": True,
-        "input_type": "holding"
+        "min": 1,
+        "max": 80,
+        "step": 1,
+        "input_type": "holding",
     },
 
     # -- CHARGER SOURCE PRIORITY (select) -------------------------------
@@ -813,6 +832,7 @@ registers = {
     },
 
     # =================  MPPT SETTINGS (101xx)  =========================
+    # 8 ─── MPPT Float voltage – 24.0 … 29.2 V
     "volt_mppt_float_voltage": {
         "addr": 10103,
         "scale": 0.1,
@@ -820,7 +840,10 @@ registers = {
         "device_class": "voltage",
         "display_name": "VOLT MPPT Float voltage",
         "is_write_reg": True,
-        "input_type": "holding"
+        "min": 24.0,
+        "max": 29.2,
+        "step": 0.1,
+        "input_type": "holding",
     },
     "volt_mppt_absorption_voltage": {
         "addr": 10104,
@@ -849,14 +872,15 @@ registers = {
         "is_write_reg": True,
         "input_type": "holding"
     },
+    # 9 ─── MPPT PV Max charger current – TYLKO ODCZYT
     "volt_mppt_pv_max_charger_current": {
         "addr": 10108,
         "scale": 0.1,
         "unit": "A",
         "device_class": "current",
         "display_name": "VOLT MPPT PV Max charger current",
-        "is_write_reg": True,
-        "input_type": "holding"
+        "is_write_reg": False,      # ← zmiana!
+        "input_type": "holding",
     },
     "volt_mppt_battery_type": {
         "addr": 10110,
